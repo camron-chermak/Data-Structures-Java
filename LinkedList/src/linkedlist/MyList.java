@@ -17,5 +17,5 @@ public interface MyList<E> {
 	int size();
 	MyList<E> sublist(int fromIndex, int toIndex);
 	Object[] toArray();
-
+	
 }
