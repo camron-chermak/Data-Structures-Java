@@ -2,24 +2,9 @@ package linkedlist;
 
 public class MyLinkedList<E> implements LinkedListInterface<E> {
 	
-	protected int size;
-	protected Node<E> head;
-	protected Node<E> tail;
-	
-	/*
-	 * Inner class for the nodes of the linked list
-	 */
-	protected class Node<T> {
-		public Node<T> prev;
-		public Node<T> next;
-		public T value;
-		
-		public Node(T value) {
-			this.value = value;
-			this.next = null;
-			this.prev = null;
-		}
-	}
+	private int size;
+	private Node<E> head;
+	private Node<E> tail;
 	
 	/*
 	 * Constructor for creating the Linked List
