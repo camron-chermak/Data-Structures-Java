@@ -1,6 +1,7 @@
 package linkedlist;
 
-public class MyLinkedList<E> implements LinkedListInterface<E> {
+public class MyLinkedList<E> implements LinkedListInterface<E> 
+{
 	
 	private int size;
 	private Node<E> head;
@@ -9,7 +10,8 @@ public class MyLinkedList<E> implements LinkedListInterface<E> {
 	/*
 	 * Constructor for creating the Linked List
 	 */
-	public MyLinkedList() {
+	public MyLinkedList() 
+	{
 		this.size = 0;
 		this.head = null;
 		this.tail = null;
@@ -21,10 +23,12 @@ public class MyLinkedList<E> implements LinkedListInterface<E> {
 	 * @return true if the element is added to the list, false otherwise
 	 */
 	@Override
-	public boolean add(E e) {
+	public boolean add(E e) 
+	{
 		
 		// Check for null and don't add if null
-		if (e == null) {
+		if (e == null) 
+		{
 			return false;
 		}
 		
@@ -32,14 +36,17 @@ public class MyLinkedList<E> implements LinkedListInterface<E> {
 		Node<E> n = new Node<E>(e);
 		
 		// If this is the front of the list then the head will be this node
-		if (this.size == 0) {
+		if (this.size == 0) 
+		{
 			this.head = n;
 		}
-		else {
+		else 
+		{
 			// Otherwise go through the list until find an element that is 
 			// null and then add it to the list and make this the tail
 			Node<E> curr = head;
-			while (curr.next != null) {
+			while (curr.next != null) 
+			{
 				curr = curr.next;
 			}
 		
@@ -55,32 +62,36 @@ public class MyLinkedList<E> implements LinkedListInterface<E> {
 	}
 
 	@Override
-	public boolean add(int index, E e) {
-		
+	public boolean add(int index, E e) 
+	{
 		// Checking for null element
-		if (e == null) {
+		if (e == null) 
+		{
 			return false;
 		}
 		
 		// Checking for a bad index
-		if (index > this.size || index < 0) {
+		if (index > this.size || index < 0) 
+		{
 			return false;
 		}
 		
 		// If adding to the end then just a normal add
-		if (index == this.size) {
+		if (index == this.size) 
+		{
 			return add(e);
 		}
 		
 		// If adding to the beginning of the list have to make it the head
 		Node<E> n = new Node<E>(e);
-		if (index == 0) {
+		if (index == 0) 
+		{
 			n.next = head;
 			head.prev = n;
 			head = n;
 		}
-		else {
-			
+		else 
+		{
 			// Get the node in current spot
 			Node<E> curr = this.head;
 			for (int i = 0; i < index; i++) {
@@ -99,19 +110,20 @@ public class MyLinkedList<E> implements LinkedListInterface<E> {
 	}
 
 	@Override
-	public void clear() {
+	public void clear() 
+	{
 		// Reset the list with size 0 and head and tail being null
 		this.size = 0;
 		this.head = null;
 		this.tail = null;
-		
 	}
 
 	@Override
-	public boolean conatins(Object o) {
-		
+	public boolean conatins(Object o) 
+	{
 		// Check if object is null
-		if (o == null) {
+		if (o == null) 
+		{
 			return false;
 		}
 		
@@ -135,7 +147,6 @@ public class MyLinkedList<E> implements LinkedListInterface<E> {
 
 	@Override
 	public E get(int index) {
-		
 		// If bad index return null
 		if (index < 0 || index > this.size) {
 			return null;
@@ -152,14 +163,37 @@ public class MyLinkedList<E> implements LinkedListInterface<E> {
 
 	@Override
 	public int indexOf(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		// Return -1 if o is null
+		if (o == null) 
+		{
+			return -1;
+		}
+		
+		// Keep track of this index
+		int index = 0;
+		
+		// Go through list until object o is found
+		Node current = this.head;
+		while (current != null) 
+		{
+			if (current.value.equals(o))
+			{
+				return index;
+			}
+			
+			index++;
+		}
+		
+		// If o is not found, return -1
+		return -1;
 	}
 
 	@Override
-	public boolean isEmpty() {
-		
-		if (this.size == 0) {
+	public boolean isEmpty() 
+	{
+		if (this.size == 0) 
+		{
 			return true;
 		}
 		
@@ -167,9 +201,31 @@ public class MyLinkedList<E> implements LinkedListInterface<E> {
 	}
 
 	@Override
-	public int lastIndexOf(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int lastIndexOf(Object o) 
+	{
+		// Return -1 if o is null
+		if (o == null) 
+		{
+			return -1;
+		}
+		
+		// Keep track of this index
+		int index = 0;
+		int lastIndex = -1;
+		
+		// Go through list until object o is found
+		Node current = this.head;
+		while (current != null) 
+		{
+			if (current.value.equals(o))
+			{
+				lastIndex = index;
+			}
+			
+			index++;
+		}
+		
+		return lastIndex;
 	}
 
 	@Override
