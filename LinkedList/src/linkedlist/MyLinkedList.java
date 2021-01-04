@@ -1,6 +1,6 @@
 package linkedlist;
 
-public class MyLinkedList<E> implements MyList<E> {
+public class MyLinkedList<E> implements LinkedListInterface<E> {
 	
 	protected int size;
 	protected Node<E> head;
@@ -215,7 +215,7 @@ public class MyLinkedList<E> implements MyList<E> {
 	}
 
 	@Override
-	public MyList<E> sublist(int fromIndex, int toIndex) {
+	public LinkedListInterface<E> sublist(int fromIndex, int toIndex) {
 		// TODO Auto-generated method stub
 		return null;
 	}

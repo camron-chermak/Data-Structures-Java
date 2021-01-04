@@ -1,6 +1,6 @@
 package linkedlist;
 
-public interface MyList<E> {
+public interface LinkedListInterface<E> {
 	
 	boolean add(E e);
 	boolean add(int index, E e);
@@ -15,7 +15,7 @@ public interface MyList<E> {
 	boolean remove(Object o);
 	E set(int index, E element);
 	int size();
-	MyList<E> sublist(int fromIndex, int toIndex);
+	LinkedListInterface<E> sublist(int fromIndex, int toIndex);
 	Object[] toArray();
 	
 }
