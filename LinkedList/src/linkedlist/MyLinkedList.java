@@ -2,7 +2,6 @@ package linkedlist;
 
 public class MyLinkedList<E> implements LinkedListInterface<E> 
 {
-	
 	private int size;
 	private Node<E> head;
 	private Node<E> tail;
@@ -25,7 +24,6 @@ public class MyLinkedList<E> implements LinkedListInterface<E>
 	@Override
 	public boolean add(E e) 
 	{
-		
 		// Check for null and don't add if null
 		if (e == null) 
 		{
@@ -174,10 +172,10 @@ public class MyLinkedList<E> implements LinkedListInterface<E>
 		int index = 0;
 		
 		// Go through list until object o is found
-		Node current = this.head;
-		while (current != null) 
+		Node<E> curr = this.head;
+		while (curr != null) 
 		{
-			if (current.value.equals(o))
+			if (curr.value.equals(o))
 			{
 				return index;
 			}
@@ -214,10 +212,10 @@ public class MyLinkedList<E> implements LinkedListInterface<E>
 		int lastIndex = -1;
 		
 		// Go through list until object o is found
-		Node current = this.head;
-		while (current != null) 
+		Node<E> curr = this.head;
+		while (curr != null) 
 		{
-			if (current.value.equals(o))
+			if (curr.value.equals(o))
 			{
 				lastIndex = index;
 			}
@@ -241,9 +239,33 @@ public class MyLinkedList<E> implements LinkedListInterface<E>
 	}
 
 	@Override
-	public E set(int index, E element) {
-		// TODO Auto-generated method stub
-		return null;
+	public E set(int index, E element) 
+	{
+		// If the index is out of bounds throw indexOutOfBounds Error
+		if (index < 0 || index >= this.size) 
+		{
+			throw new IndexOutOfBoundsException();
+		}
+		
+		// Go through the list to the index
+		Node<E> curr = head;
+		for (int i = 0; i < index; i++)
+		{
+			curr = curr.next;
+		}
+		
+		// Save off the current value for returning
+		Node<E> retValue = curr;
+		
+		// Replace the value
+		Node<E> replacement = new Node<E>(element);
+		curr.prev.next = replacement;
+		curr.next.prev = replacement;
+		replacement.prev = curr.prev;
+		replacement.next = curr.next;
+		
+		// Return the old value
+		return retValue.value;
 	}
 
 	/*
@@ -262,9 +284,19 @@ public class MyLinkedList<E> implements LinkedListInterface<E>
 	}
 
 	@Override
-	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
+	public Object[] toArray() 
+	{
+		// Create the correct size array
+		Object[] retArray = new Object[this.size];
+		
+		// Go through the linked list adding the values
+		Node<E> curr = head;
+		for (int i = 0; i < this.size; i++)
+		{
+			retArray[i] = curr.value;
+		}
+		
+		return retArray;
 	}
 	
 	@Override

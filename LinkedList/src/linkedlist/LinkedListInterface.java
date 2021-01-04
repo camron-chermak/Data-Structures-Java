@@ -17,5 +17,4 @@ public interface LinkedListInterface<E> {
 	int size();
 	LinkedListInterface<E> sublist(int fromIndex, int toIndex);
 	Object[] toArray();
-	
 }
